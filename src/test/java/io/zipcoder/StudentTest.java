@@ -58,7 +58,7 @@ public class StudentTest {
     }
 
     @Test
-    public void getExamScores() {
+    public void getExamScoresTest() {
         // Given
         String expectedExamScores = "Exam Scores: \n" +"\tExam 1 -> 100\n" +"\tExam 2 -> 95\n";
         Student student = new Student(null, null, new Double[] {100.0, 95.0});
@@ -71,4 +71,30 @@ public class StudentTest {
 
     }
 
+    @Test
+    public void getNumberOfExamsTest(){
+        // Given
+        Student student = new Student(null, null, new Double[] {95.0, 67.0, 101.0});
+        int expectedNumberOfExams = 3;
+
+        // When
+        int actualNumberOfExams = student.getNumberOfExamsTaken();
+
+        // Then
+        Assert.assertEquals(expectedNumberOfExams, actualNumberOfExams);
+    }
+
+    @Test
+    public void addExamScoreTest(){
+        // Given
+        Student student = new Student("Michael", "Williams", new Double[] {});
+        String expectedReturn = "Exam Scores: \n" + "\tExam 1 -> 99\n";
+
+        // When
+        student.addExamScore(99.0);
+        String actualReturn = student.getExamScores();
+
+        // Then
+        Assert.assertEquals(expectedReturn, actualReturn);
+    }
 }
