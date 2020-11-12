@@ -27,7 +27,7 @@ public class Student {
 
         String examScoresAsString = "Exam Scores: \n";
         for (int i = 0; i < examScores.size(); i++) {
-             examScoresAsString += String.format("\tExam %d -> %.0f\n", i+1, examScores.get(i));
+            examScoresAsString += String.format("\tExam %d -> %.0f\n", i + 1, examScores.get(i));
         }
         return examScoresAsString;
     }
@@ -42,6 +42,15 @@ public class Student {
 
     public void setExamScores() {
         this.examScores = examScores;
+    }
+
+    public Double getAverageExamScore() {
+        double sum = 0;
+        for (Double scores : examScores) {
+            sum += scores;
+        }
+        double averageExamScore = sum / examScores.size();
+        return averageExamScore;
     }
 }
 

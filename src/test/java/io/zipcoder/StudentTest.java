@@ -35,7 +35,8 @@ public class StudentTest {
         Student student = new Student(expectedFirstName, "", new Double[0]);
 
         // When
-        String actualFirstName = student.getFirstName();
+       student.setFirstName(expectedFirstName);
+       String actualFirstName = student.getFirstName();
 
         // Then
         Assert.assertEquals(expectedFirstName, actualFirstName);
@@ -45,9 +46,11 @@ public class StudentTest {
     public void setLastNameTest() {
         // Given
         String expectedLastName = "Hunter";
-        Student student = new Student("", expectedLastName, new Double[0]);
+        Student student = new Student("", "", new Double[0]);
+
 
         // When
+        student.setLastName(expectedLastName);
         String actualLastName = student.getLastName();
 
         // Then
