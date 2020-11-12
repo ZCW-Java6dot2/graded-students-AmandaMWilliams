@@ -1,14 +1,21 @@
 package io.zipcoder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Student {
     private String firstName;
     private String lastName;
     private ArrayList<Double> examScores;
 
+    public Student(String firstName, String lastName, Double[] examScores) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.examScores = new ArrayList<Double>(Arrays.asList(examScores));
 
-    public java.lang.String getFirstName() {
+    }
+
+    public String getFirstName() {
         return firstName;
     }
 
@@ -16,15 +23,13 @@ public class Student {
         return lastName;
     }
 
-    public ArrayList<Double> getExamScores(String firstName, String lastName, ArrayList<Double> examScores) {
-        System.out.println("Exam 1 -> " + examScores.get(0));
-        System.out.println("Exam 2 -> " + examScores.get(1));
-        System.out.println("Exam 3 -> " + examScores.get(2));
-        System.out.println("Exam 4 -> " + examScores.get(3));
-    }
+    public String getExamScores() {
 
-    public void setExamScores(ArrayList<Double> examScores) {
-        this.examScores = examScores;
+        String examScoresAsString = "Exam Scores: \n";
+        for (int i = 0; i < examScores.size(); i++) {
+             examScoresAsString += String.format("\tExam %d -> %.0f\n", i+1, examScores.get(i));
+        }
+        return examScoresAsString;
     }
 
     public void setFirstName(String firstName) {
@@ -35,13 +40,8 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public Integer getNumberOfExamsTaken() {
-        return examScores.size();
-    }
-
-    public double addExamScore(double examScore) {
-        ArrayList<Double> examScores = new ArrayList<>();
-        examScores.add(examScore);
-        return examScore;
+    public void setExamScores() {
+        this.examScores = examScores;
     }
 }
+
