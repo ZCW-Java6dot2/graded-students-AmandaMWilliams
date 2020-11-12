@@ -35,8 +35,8 @@ public class StudentTest {
         Student student = new Student(expectedFirstName, "", new Double[0]);
 
         // When
-       student.setFirstName(expectedFirstName);
-       String actualFirstName = student.getFirstName();
+        student.setFirstName(expectedFirstName);
+        String actualFirstName = student.getFirstName();
 
         // Then
         Assert.assertEquals(expectedFirstName, actualFirstName);
@@ -60,8 +60,8 @@ public class StudentTest {
     @Test
     public void getExamScoresTest() {
         // Given
-        String expectedExamScores = "Exam Scores: \n" +"\tExam 1 -> 100\n" +"\tExam 2 -> 95\n";
-        Student student = new Student(null, null, new Double[] {100.0, 95.0});
+        String expectedExamScores = "Exam Scores: \n" + "\tExam 1 -> 100\n" + "\tExam 2 -> 95\n";
+        Student student = new Student(null, null, new Double[]{100.0, 95.0});
 
         // When
         String actualExamScores = student.getExamScores();
@@ -72,9 +72,9 @@ public class StudentTest {
     }
 
     @Test
-    public void getNumberOfExamsTest(){
+    public void getNumberOfExamsTest() {
         // Given
-        Student student = new Student(null, null, new Double[] {95.0, 67.0, 101.0});
+        Student student = new Student(null, null, new Double[]{95.0, 67.0, 101.0});
         int expectedNumberOfExams = 3;
 
         // When
@@ -85,9 +85,9 @@ public class StudentTest {
     }
 
     @Test
-    public void addExamScoreTest(){
+    public void addExamScoreTest() {
         // Given
-        Student student = new Student("Michael", "Williams", new Double[] {});
+        Student student = new Student("Michael", "Williams", new Double[]{});
         String expectedReturn = "Exam Scores: \n" + "\tExam 1 -> 99\n";
 
         // When
@@ -99,9 +99,9 @@ public class StudentTest {
     }
 
     @Test
-    public void setExamScoresTest(){
+    public void setExamScoresTest() {
         // Given
-        Student student = new Student(null, null, new Double[] {} );
+        Student student = new Student(null, null, new Double[]{});
         String expectedReturn = "Exam Scores: \n" + "\tExam 1 -> 150\n";
 
         // When
@@ -110,5 +110,18 @@ public class StudentTest {
 
         // Then
         Assert.assertEquals(expectedReturn, actualReturn);
+    }
+
+    @Test
+    public void getAverageExamScoreTest() {
+        // Given
+        Student student = new Student(null, null, new Double[]{100.0, 50.0});
+        Double expectedAverage = 75.0;
+
+        // When
+        Double actualAverage = student.getAverageExamScore();
+
+        // Then
+        Assert.assertEquals(expectedAverage, actualAverage);
     }
 }
