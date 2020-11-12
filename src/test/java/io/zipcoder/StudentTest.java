@@ -124,4 +124,18 @@ public class StudentTest {
         // Then
         Assert.assertEquals(expectedAverage, actualAverage);
     }
+
+    @Test
+    public void toStringTest(){
+        // Given
+        Student student = new Student("Leon", "Hunter", new Double[] {100.0});
+        String expectedOutput = "Student Name: Leon Hunter\n> Average Score: 100.0\n> Exam Scores: \n\tExam 1 -> 100\n";
+
+        // When
+        String actualOutput = student.toString();
+
+        // Then
+        Assert.assertEquals(expectedOutput,actualOutput);
+
+    }
 }
