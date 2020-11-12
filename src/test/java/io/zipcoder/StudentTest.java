@@ -97,4 +97,18 @@ public class StudentTest {
         // Then
         Assert.assertEquals(expectedReturn, actualReturn);
     }
+
+    @Test
+    public void setExamScoresTest(){
+        // Given
+        Student student = new Student(null, null, new Double[] {} );
+        String expectedReturn = "Exam Scores: \n" + "\tExam 1 -> 150\n";
+
+        // When
+        student.setExamScore(1, 150.0);
+        String actualReturn = student.getExamScores();
+
+        // Then
+        Assert.assertEquals(expectedReturn, actualReturn);
+    }
 }

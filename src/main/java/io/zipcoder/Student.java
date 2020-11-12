@@ -54,6 +54,7 @@ public class Student {
         return numberOfExamsTaken;
     }
 
+
     //Setters
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -68,12 +69,11 @@ public class Student {
 
         }
 
+    public void setExamScore(int examNumber, double newScore) {
+        examNumber = examScores.size();
+        examScores.add(examNumber, newScore);
 
-
-//    public void setExamScores() {
-//        this.examScores = examScores;
-//    }
-
+    }
 
 }
 
