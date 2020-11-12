@@ -70,4 +70,5 @@ public class StudentTest {
         Assert.assertEquals(expectedExamScores, actualExamScores);
 
     }
+
 }

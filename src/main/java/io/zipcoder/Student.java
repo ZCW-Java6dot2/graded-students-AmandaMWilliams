@@ -14,6 +14,10 @@ public class Student {
         this.examScores = new ArrayList<Double>(Arrays.asList(examScores));
 
     }
+    @Override
+    public String toString(){
+        return String.format("Student Name: %s %s\n> Average Score: %3.1f\n", getFirstName(), getLastName(), getAverageExamScore()) + "> " + getExamScores();
+    }
 
     public String getFirstName() {
         return firstName;
@@ -52,5 +56,7 @@ public class Student {
         double averageExamScore = sum / examScores.size();
         return averageExamScore;
     }
+
+
 }
 
