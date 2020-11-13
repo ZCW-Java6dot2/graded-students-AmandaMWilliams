@@ -53,18 +53,37 @@ public class Classroom {
     }
 }
 
-    //Use comparator to get all null values to the end of the array
-    class SortNulls implements Comparator<Student> {
+//Use comparator to get all null values to the end of the array
+class SortNulls implements Comparator<Student> {
+    public int compare(Student s1, Student s2) {
+        if (s1 == null && s2 == null) {  // if both are null
+            return 0;                   //Dont move anything
+        } else if (s1 == null) {      //if s1 is null
+            return 1;                 //pushes s1 toward the end of the list
+        } else if (s2 == null) {     // if s2 is null
+            return -1;             //pushes s2 toward the end of the list
+        } else {
+            return 0;   // if neither are null, dont move them
+        }
+    }
+
+
+    public class SortByFirstName implements Comparator<Student> {
         public int compare(Student s1, Student s2) {
-            if (s1 == null && s2 == null) {  // if both are null
-                return 0;                   //Dont move anything
-            } else if (s1 == null) {      //if s1 is null
-                return 1;                 //pushes s1 toward the end of the list
-            } else if (s2 == null) {     // if s2 is null
-                return -1;             //pushes s2 toward the end of the list
+            if (s1.getAverageExamScore() == null && s2.getAverageExamScore() == null){
+                return 0;
+            }
+            else if (s1.getAverageExamScore() == s2.getAverageExamScore()) {
+                return s1.getLastName().compareTo(s2.getLastName());   // alphabetical order
+            } else if (s1.getAverageExamScore() < s2.getAverageExamScore()) {
+                return 1;
+            } else if (s1.getAverageExamScore() > s2.getAverageExamScore()) {
+                return -1;
             } else {
-                return 0;   // if neither are null, dont move them
+                return 0;
             }
         }
     }
+
+}
 
