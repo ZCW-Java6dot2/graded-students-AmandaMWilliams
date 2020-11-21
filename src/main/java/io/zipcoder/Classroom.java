@@ -1,7 +1,6 @@
 package io.zipcoder;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 public class Classroom {
     private Student[] students;
@@ -19,18 +18,18 @@ public class Classroom {
         this.students = new Student[30];
     }
 
-    public Student[] getStudent() {
+    public Student[] getStudents() {
         return students;
     }
 
     public Double getAverageExamScore() {
-        double studentAverage = 0.0;
-        double classAverage = 0.0;
-        for (int i = 0; i < students.length; i++) {
-            studentAverage += students[i].getAverageExamScore();
+        Double sumOfAllExamScoreAverages = 0.0;
+        for (Student student : students) {
+            if (student != null) {
+                sumOfAllExamScoreAverages += student.getAverageExamScore();
+            }
         }
-        classAverage = studentAverage / students.length;
-        return classAverage;
+        return sumOfAllExamScoreAverages/students.length;
     }
 
     public void addStudent(Student student) {
@@ -51,6 +50,40 @@ public class Classroom {
         }
         Arrays.sort(students, new SortNulls());  //Used to sort students based on if they're null or not
     }
+
+    public Student[] getStudentsByScore(){
+        ArrayList<Student> studentsList = new ArrayList<>(Arrays.asList(students));
+      //  Collections.sort(studentsList);
+        return studentsList.toArray(new Student[studentsList.size()]);
+    }
+
+    public Map<String, Character> getGradeBook(){
+        Map<String, Character> gradeBook = new HashMap<>();
+        int count;
+        int percent;
+
+        for (int i = 0; i < students.length; i++) {
+            count = 0;
+            for (int j = 0; j < students.length; j++) {
+                if(students[i].getAverageExamScore() > students[j].getAverageExamScore()){
+                    count++;
+                }
+            }
+            percent = (count * 100)/(students.length -1);
+            if(percent > 89){
+                gradeBook.put(students[i].toString(), 'A');
+            } else if(percent <= 89 && 70 < percent){
+                gradeBook.put(students[i].toString(), 'B');
+            } else if(percent <=70 && percent > 49){
+                gradeBook.put(students[i].toString(), 'C');
+            } else if(percent <= 49 && percent > 11){
+                gradeBook.put(students[i].toString(), 'D');
+            } else{
+                gradeBook.put(students[i].toString(), 'F');
+            }
+        }
+        return gradeBook;
+    }
 }
 
 //Use comparator to get all null values to the end of the array
@@ -60,15 +93,15 @@ class SortNulls implements Comparator<Student> {
             return 0;                   //Dont move anything
         } else if (s1 == null) {      //if s1 is null
             return 1;                 //pushes s1 toward the end of the list
-        } else if (s2 == null) {     // if s2 is null
-            return -1;             //pushes s2 toward the end of the list
+        } else if (s2 == null) {      // if s2 is null
+            return -1;                //pushes s2 toward the end of the list
         } else {
             return 0;   // if neither are null, dont move them
         }
     }
 
 
-    public class SortByFirstName implements Comparator<Student> {
+    public class SortByScore implements Comparator<Student> {
         public int compare(Student s1, Student s2) {
             if (s1.getAverageExamScore() == null && s2.getAverageExamScore() == null){
                 return 0;
